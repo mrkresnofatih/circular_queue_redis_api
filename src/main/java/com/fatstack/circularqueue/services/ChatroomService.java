@@ -19,7 +19,7 @@ public class ChatroomService {
     public Chatroom addChatroom(String chatroomName) {
         var newRoom = new Chatroom();
         newRoom.setRoomName(chatroomName);
-        newRoom.setMessages(new CircularFifoQueue<>());
+        newRoom.setMessages(new CircularFifoQueue<>(5));
         redisTemplate
                 .opsForValue()
                 .set(chatroomName, newRoom);
